@@ -165,7 +165,7 @@ KEYBITS = 256
 ALLOWED_VERSIONS = ['v1', 'v2']
 DEFAULT_VERSION = 'v1'
 
-BASEURL = 'http://entreno-examen.herokuapp.com'
+BASEURL = 'https://entreno-examen.herokuapp.com'
 
 try:
     from local_settings import *
@@ -182,8 +182,6 @@ if os.path.exists("config.jsonnet"):
 
 
 INSTALLED_APPS = INSTALLED_APPS + MODULES
-
-APIS = {}
 
 import django_heroku
 django_heroku.settings(locals())
