@@ -183,6 +183,8 @@ if os.path.exists("config.jsonnet"):
 
 INSTALLED_APPS = INSTALLED_APPS + MODULES
 
+APIS={}
+
 import django_heroku
 django_heroku.settings(locals())
 

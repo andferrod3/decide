@@ -1,0 +1,26 @@
+dist: xenial
+
+services:
+  - postgresql
+addons:
+  postgresql: "9.4"
+before_script:
+  - psql -U postgres -c "create user decide password 'decide'"
+  - psql -U postgres -c "create database test_decide owner decide"
+  - psql -U postgres -c "ALTER USER decide CREATEDB"
+language: python
+python:
+  - "3.6"
+install:
+  - pip install -r requirements.txt
+  - pip install codacy-coverage
+script:
+  - cd decide
+  - coverage run --branch --source=. ./manage.py test mixnet --keepdb --with-xunit
+  - coverage xml
+  - python-codacy-coverage -r coverage.xml
+deploy:
+  provider: heroku
+  app: entreno-examen
+  strategy: git
+  apikey: 8003ae90-1071-4cee-8b6c-c9c7d4fb6a8c
